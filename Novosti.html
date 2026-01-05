@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apex Automotive | Novosti</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* --- 1. POSTAVKE BOJA I FONTOVA --- */
+        :root {
+            --bg-dark: #121212;
+            --bg-panel: #1e1e1e;
+            --text-main: #e0e0e0;
+            --text-muted: #a0a0a0;
+            --accent-gold: #d4af37;
+            --nav-bg: #000000;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+
+        /* --- 2. HERO SEKCIJA --- */
+        .hero-image-container {
+            width: 100%;
+            overflow: hidden;
+            background-color: #000;
+        }
+
+        .hero-image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+            max-height: 73vh;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        /* --- 3. NAVIGACIJA --- */
+        .navbar {
+            background-color: var(--nav-bg);
+            border-bottom: 1px solid #333;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 15px 0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo {
+            font-family: 'Cinzel', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            margin-bottom: 10px;
+            text-shadow: 0px 0px 10px rgba(212, 175, 55, 0.3);
+        }
+
+        .nav-links { display: flex; list-style: none; gap: 20px; }
+        .nav-links a {
+            display: block; padding: 8px 15px; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 2px;
+            color: var(--text-muted); font-weight: 500; border-radius: 2px;
+        }
+        .nav-links a:hover { color: #fff; }
+        .nav-links a.active { color: var(--accent-gold); border-bottom: 1px solid var(--accent-gold); }
+
+        /* --- 4. GLAVNI SADRŽAJ --- */
+        .content-wrapper {
+            max-width: 1000px; /* Uži kontejner za listu izgleda bolje */
+            margin: 0 auto;
+            padding: 60px 20px;
+            flex: 1;
+        }
+
+        .page-header {
+            text-align: left;
+            margin-bottom: 40px;
+            border-bottom: 2px solid var(--accent-gold);
+            padding-bottom: 10px;
+        }
+
+        .page-header h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            color: #fff;
+            text-transform: uppercase;
+        }
+
+        /* --- 5. STORIES LIST (Novi dizajn prema screenshotu) --- */
+        .stories-list {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .story-card {
+            display: flex;
+            flex-direction: row; /* Slika lijevo, tekst desno */
+            background: transparent;
+            border-bottom: 1px dotted #555; /* Točkasta linija ispod */
+            padding-bottom: 30px;
+            align-items: flex-start;
+        }
+
+        .story-card:last-child {
+            border-bottom: none;
+        }
+
+        /* Slika članka (Mala s lijeve strane) */
+        .story-thumbnail {
+            width: 220px;  /* Fiksna širina */
+            height: 140px; /* Fiksna visina */
+            flex-shrink: 0; /* Sprječava smanjivanje slike */
+            overflow: hidden;
+            border-radius: 2px;
+            margin-right: 25px; /* Razmak do teksta */
+            border: 1px solid #333;
+        }
+
+        .story-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .story-card:hover .story-thumbnail img {
+            transform: scale(1.05);
+        }
+
+        /* Tekst članka */
+        .story-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        .story-title {
+            font-family: 'Segoe UI', sans-serif; /* Čišći font za naslove u listi */
+            font-size: 1.3rem;
+            color: var(--accent-gold); /* Zlatna boja naslova */
+            margin-bottom: 10px;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        .story-excerpt {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+
+        .read-more {
+            color: #fff;
+            text-decoration: underline;
+            font-size: 0.9rem;
+            margin-left: 5px;
+        }
+        
+        .read-more:hover { color: var(--accent-gold); }
+
+        .story-date {
+            font-size: 0.85rem;
+            color: #666;
+            font-style: italic;
+            margin-top: 5px;
+        }
+
+        /* --- 6. FOOTER --- */
+        footer { margin-top: 50px; width: 100%; }
+        .footer-socials { background-color: var(--bg-panel); padding: 20px; text-align: left; padding-left: 10%; }
+        .footer-socials p { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 10px; font-weight: bold; }
+        .social-icons a { font-size: 1.5rem; margin-right: 15px; color: #fff; transition: color 0.3s; }
+        .social-icons a:hover { color: var(--accent-gold); }
+        .footer-copyright { background-color: #000; padding: 15px 0; text-align: center; border-top: 1px solid #333; display: flex; justify-content: center; align-items: center; gap: 10px; }
+        .footer-copyright span { color: #fff; font-size: 0.9rem; }
+        .github-link { color: #fff; font-size: 1.2rem; display: flex; align-items: center; }
+        .github-link:hover { color: var(--accent-gold); }
+
+        /* --- 7. RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .navbar { padding: 15px; }
+            .logo { font-size: 2rem; }
+            .nav-links { flex-direction: column; width: 100%; text-align: center; gap: 5px; }
+            .hero-image-container img { max-height: none; }
+            
+            /* Prilagodba liste za mobitele */
+            .story-card { flex-direction: column; }
+            .story-thumbnail { width: 100%; height: 200px; margin-right: 0; margin-bottom: 15px; }
+            .footer-socials { text-align: center; padding-left: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="hero-image-container">
+        <img src="Slike/Gemini_Generated_Image_8i9oa18i9oa18i9o.png" alt="Apex Automotive Salon">
+    </header>
+
+    <nav class="navbar">
+        <div class="logo">Apex Auto</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Početna</a></li>
+            <li><a href="novosti.html" class="active">Novosti</a></li>
+            <li><a href="o-nama.html">O Nama</a></li>
+            <li><a href="galerija.html">Galerija</a></li>
+            <li><a href="kontakt.html">Kontakt</a></li>
+        </ul>
+    </nav>
+
+    <main class="content-wrapper">
+        
+        <div class="page-header">
+            <h1>NOVOSTI</h1>
+        </div>
+
+        <div class="stories-list">
+            
+            <article class="story-card">
+                <div class="story-thumbnail">
+                    <img src="Slike/ferrari-home.jpeg" alt="Ferrari F12 Berlinetta">
+                </div>
+                <div class="story-content">
+                    <h3 class="story-title">Povratak Kralja: Ferrari F12 Berlinetta u Zagrebu</h3>
+                    <p class="story-excerpt">
+                        Analiziramo zašto ovaj V12 grand tourer ostaje jedan od najpoželjnijih modernih klasika. Zvuk atmosferskog motora koji oduzima dah je nešto što se mora doživjeti uživo.
+                        <a href="#" class="read-more">Više...</a>
+                    </p>
+                    <span class="story-date">03. Siječanj 2024.</span>
+                </div>
+            </article>
+
+            <article class="story-card">
+                <div class="story-thumbnail">
+                    <img src="Slike/porsche_911-gt3-rs.jpeg" alt="Porsche 911 GT3 RS">
+                </div>
+                <div class="story-content">
+                    <h3 class="story-title">Inženjersko Čudo: Porsche 911 GT3 RS na Stazi</h3>
+                    <p class="story-excerpt">
+                        Testirali smo granice aerodinamike i performansi na Grobniku. Saznajte kako se ova njemačka zvijer u crnoj boji ponaša u ekstremnim uvjetima i zašto je ovo najbolji 911 do sada.
+                        <a href="#" class="read-more">Više...</a>
+                    </p>
+                    <span class="story-date">28. Prosinac 2023.</span>
+                </div>
+            </article>
+
+            <article class="story-card">
+                <div class="story-thumbnail">
+                    <img src="Slike/Gclass.jpg" alt="Mercedes G-Klasa">
+                </div>
+                <div class="story-content">
+                    <h3 class="story-title">Ikona Terena: Nova G-Klasa Onyx Edition</h3>
+                    <p class="story-excerpt">
+                        Kombinacija sirove snage i ultimativnog luksuza. Pogledajte detalje unutrašnjosti i karbonske dodatke koji ovaj model čine jedinstvenim na našem tržištu.
+                        <a href="#" class="read-more">Više...</a>
+                    </p>
+                    <span class="story-date">20. Prosinac 2023.</span>
+                </div>
+            </article>
+
+            <article class="story-card">
+                <div class="story-thumbnail">
+                    <img src="Slike/rolls-royce.jpeg" alt="Rolls-Royce Phantom">
+                </div>
+                <div class="story-content">
+                    <h3 class="story-title">Tišina Luksuza: Mansory Rolls-Royce Phantom</h3>
+                    <p class="story-excerpt">
+                        Što znači prava udobnost u 21. stoljeću? Rolls-Royce redefinira pojam izolacije, a ovaj primjerak dolazi s posebnim body kitom koji naglašava njegovu dominaciju.
+                        <a href="#" class="read-more">Više...</a>
+                    </p>
+                    <span class="story-date">15. Prosinac 2023.</span>
+                </div>
+            </article>
+
+            <article class="story-card">
+                <div class="story-thumbnail">
+                    <img src="Slike/bentli2.jpg" alt="Bentley Continental GT">
+                </div>
+                <div class="story-content">
+                    <h3 class="story-title">Britanska Elegancija: Bentley Continental GT</h3>
+                    <p class="story-excerpt">
+                        Grand Tourer koji spaja sportske performanse s udobnošću prve klase. Predstavljamo tamno sivu varijantu koja je upravo stigla u salon i spremna je za isporuku.
+                        <a href="#" class="read-more">Više...</a>
+                    </p>
+                    <span class="story-date">10. Studeni 2023.</span>
+                </div>
+            </article>
+
+            <article class="story-card">
+                <div class="story-thumbnail">
+                    <img src="Slike/ferrari-roma.jpeg" alt="Ferrari Roma">
+                </div>
+                <div class="story-content">
+                    <h3 class="story-title">La Dolce Vita: Crvena Ferrari Roma</h3>
+                    <p class="story-excerpt">
+                        Utjelovljenje talijanskog stila i elegancije. Roma donosi dašak prošlosti u modernom pakiranju s V8 turbo motorom od 620 KS. Savršen automobil za vikend putovanja.
+                        <a href="#" class="read-more">Više...</a>
+                    </p>
+                    <span class="story-date">05. Studeni 2023.</span>
+                </div>
+            </article>
+
+            <article class="story-card">
+                <div class="story-thumbnail">
+                    <img src="Slike/Gemini_Generated_Image_8i9oa18i9oa18i9o.png" alt="Apex Salon">
+                </div>
+                <div class="story-content">
+                    <h3 class="story-title">Apex Automotive: Novi Standard Luksuza</h3>
+                    <p class="story-excerpt">
+                        Pogledajte unutar našeg novouređenog salona gdje vas čekaju najekskluzivniji automobili na svijetu. Vaša destinacija za premium vozila u centru Zagreba.
+                        <a href="#" class="read-more">Više...</a>
+                    </p>
+                    <span class="story-date">01. Studeni 2023.</span>
+                </div>
+            </article>
+
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-socials">
+            <p>Social media:</p>
+            <div class="social-icons">
+                <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-square"></i></a>
+                <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <span>Copyright © 2024 Apex Automotive.</span>
+            <a href="https://github.com/MarioM17/Web-Aplikacije--Web-stranica-Mario-Moric.git" target="_blank" class="github-link"><i class="fab fa-github"></i></a>
+        </div>
+    </footer>
+
+</body>
+</html>

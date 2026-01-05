@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apex Automotive | Kontakt</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- POSTAVKE --- */
+        :root { --bg-dark: #121212; --bg-panel: #1e1e1e; --text-main: #e0e0e0; --text-muted: #a0a0a0; --accent-gold: #d4af37; --nav-bg: #000000; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--bg-dark); color: var(--text-main); line-height: 1.6; display: flex; flex-direction: column; min-height: 100vh; }
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+
+        /* --- HERO --- */
+        .hero-image-container { width: 100%; overflow: hidden; background-color: #000; }
+        .hero-image-container img { width: 100%; height: auto; display: block; max-height: 73vh; object-fit: cover; object-position: center; }
+
+        /* --- NAVIGACIJA --- */
+        .navbar { background-color: var(--nav-bg); border-bottom: 1px solid #333; position: sticky; top: 0; z-index: 1000; padding: 15px 0; box-shadow: 0 4px 10px rgba(0,0,0,0.5); display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        .logo { font-family: 'Cinzel', serif; font-size: 3rem; font-weight: 700; color: var(--accent-gold); text-transform: uppercase; letter-spacing: 5px; margin-bottom: 10px; text-shadow: 0px 0px 10px rgba(212, 175, 55, 0.3); }
+        .nav-links { display: flex; list-style: none; gap: 20px; }
+        .nav-links a { display: block; padding: 8px 15px; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-muted); font-weight: 500; border-radius: 2px; }
+        .nav-links a:hover { color: #fff; }
+        .nav-links a.active { color: var(--accent-gold); border-bottom: 1px solid var(--accent-gold); }
+
+        /* --- KONTAKT SEKCIJA --- */
+        .content-wrapper { max-width: 1200px; margin: 0 auto; padding: 80px 20px; width: 100%; flex: 1; }
+        
+        .section-title { text-align: center; margin-bottom: 60px; font-family: 'Cinzel', serif; font-size: 2.5rem; color: #fff; }
+        .section-title span { color: var(--accent-gold); }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* Dva stupca: Info i Forma */
+            gap: 60px;
+            align-items: start;
+        }
+
+        /* LIJEVA STRANA: INFO */
+        .contact-info-box h3 { font-family: 'Cinzel', serif; font-size: 1.5rem; color: #fff; margin-bottom: 30px; border-bottom: 1px solid #333; padding-bottom: 10px; display: inline-block; }
+        
+        .info-item { display: flex; align-items: flex-start; margin-bottom: 30px; }
+        .info-icon { font-size: 1.5rem; color: var(--accent-gold); margin-right: 20px; margin-top: 5px; width: 30px; text-align: center; }
+        .info-text h4 { color: #fff; font-size: 1.1rem; margin-bottom: 5px; }
+        .info-text p { color: var(--text-muted); font-size: 0.95rem; }
+
+        .hours-box { background-color: var(--bg-panel); padding: 30px; border-radius: 4px; border: 1px solid #333; margin-top: 40px; }
+        .hours-box h4 { color: var(--accent-gold); margin-bottom: 20px; font-family: 'Cinzel', serif; }
+        .hours-row { display: flex; justify-content: space-between; margin-bottom: 10px; border-bottom: 1px dotted #444; padding-bottom: 5px; }
+        .hours-row:last-child { border: none; }
+
+        /* DESNA STRANA: FORMA */
+        .contact-form-box { background-color: var(--bg-panel); padding: 40px; border-radius: 4px; border: 1px solid #333; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+        
+        .form-group { margin-bottom: 25px; position: relative; }
+        .form-group label { display: block; color: var(--text-muted); margin-bottom: 8px; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
+        
+        .form-control {
+            width: 100%;
+            padding: 15px;
+            background-color: #121212;
+            border: 1px solid #333;
+            color: #fff;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: all 0.3s;
+            border-radius: 2px;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent-gold);
+            background-color: #000;
+        }
+
+        textarea.form-control { resize: vertical; min-height: 150px; }
+
+        .btn-submit {
+            background-color: transparent;
+            color: var(--accent-gold);
+            border: 2px solid var(--accent-gold);
+            padding: 15px 40px;
+            font-size: 1rem;
+            text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+        }
+
+        .btn-submit:hover {
+            background-color: var(--accent-gold);
+            color: #000;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+        }
+
+        /* --- MAPA --- */
+        .map-section { margin-top: 80px; width: 100%; height: 400px; filter: grayscale(100%) invert(92%) contrast(83%); /* Efekt tamne mape */ border-top: 2px solid var(--accent-gold); border-bottom: 2px solid var(--accent-gold); }
+        .map-frame { width: 100%; height: 100%; border: 0; }
+
+        /* --- FOOTER --- */
+        footer { margin-top: 0; width: 100%; }
+        .footer-socials { background-color: var(--bg-panel); padding: 20px; text-align: left; padding-left: 10%; }
+        .footer-socials p { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 10px; font-weight: bold; }
+        .social-icons a { font-size: 1.5rem; margin-right: 15px; color: #fff; transition: color 0.3s; }
+        .social-icons a:hover { color: var(--accent-gold); }
+        .footer-copyright { background-color: #000; padding: 15px 0; text-align: center; border-top: 1px solid #333; display: flex; justify-content: center; align-items: center; gap: 10px; }
+        .footer-copyright span { color: #fff; font-size: 0.9rem; }
+        .github-link { color: #fff; font-size: 1.2rem; display: flex; align-items: center; }
+        .github-link:hover { color: var(--accent-gold); }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .navbar { padding: 15px; }
+            .logo { font-size: 2rem; }
+            .nav-links { flex-direction: column; width: 100%; text-align: center; gap: 5px; }
+            .hero-image-container img { max-height: none; }
+            
+            .contact-grid { grid-template-columns: 1fr; gap: 40px; } /* Jedan stupac na mobitelu */
+            .footer-socials { text-align: center; padding-left: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="hero-image-container">
+        <img src="Slike/Gemini_Generated_Image_8i9oa18i9oa18i9o.png" alt="Apex Automotive Salon">
+    </header>
+
+    <nav class="navbar">
+        <div class="logo">Apex Auto</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Početna</a></li>
+            <li><a href="novosti.html">Novosti</a></li>
+            <li><a href="o-nama.html">O Nama</a></li>
+            <li><a href="galerija.html">Galerija</a></li>
+            <li><a href="kontakt.html" class="active">Kontakt</a></li>
+        </ul>
+    </nav>
+
+    <main class="content-wrapper">
+        <h1 class="section-title">Stupite u <span>Kontakt</span></h1>
+
+        <div class="contact-grid">
+            
+            <div class="contact-info-box">
+                <h3>Posjetite Nas</h3>
+                
+                <div class="info-item">
+                    <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
+                    <div class="info-text">
+                        <h4>Adresa Salona</h4>
+                        <p>Radnička Cesta 80<br>10000 Zagreb, Hrvatska</p>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-icon"><i class="fas fa-phone-alt"></i></div>
+                    <div class="info-text">
+                        <h4>Telefon</h4>
+                        <p>+385 1 234 5678<br>+385 91 987 6543</p>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-icon"><i class="fas fa-envelope"></i></div>
+                    <div class="info-text">
+                        <h4>Email</h4>
+                        <p>info@apex-auto.hr<br>prodaja@apex-auto.hr</p>
+                    </div>
+                </div>
+
+                <div class="hours-box">
+                    <h4>Radno Vrijeme</h4>
+                    <div class="hours-row"><span>Ponedjeljak - Petak:</span> <span>09:00 - 18:00</span></div>
+                    <div class="hours-row"><span>Subota:</span> <span>10:00 - 14:00</span></div>
+                    <div class="hours-row"><span>Nedjelja:</span> <span>Zatvoreno</span></div>
+                </div>
+            </div>
+
+            <div class="contact-form-box">
+                <form action="#" method="POST">
+                    <div class="form-group">
+                        <label for="name">Ime i Prezime</label>
+                        <input type="text" id="name" name="name" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Adresa</label>
+                        <input type="email" id="email" name="email" class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject">Predmet</label>
+                        <select id="subject" name="subject" class="form-control">
+                            <option value="upit">Opći upit</option>
+                            <option value="proba">Probna vožnja</option>
+                            <option value="narudzba">Narudžba vozila</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Vaša Poruka</label>
+                        <textarea id="message" name="message" class="form-control"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-submit">Pošalji Poruku</button>
+                </form>
+            </div>
+
+        </div>
+    </main>
+
+    <div class="map-section">
+        <iframe class="map-frame" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2781.797746473187!2d15.99042531556834!3d45.80164497910629!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4765d702ad473179%3A0x633d7c3579b20757!2sRadni%C4%8Dka%20cesta%2080%2C%2010000%2C%20Zagreb!5e0!3m2!1shr!2shr!4v1672846123456!5m2!1shr!2shr" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+
+    <footer>
+        <div class="footer-socials">
+            <p>Social media:</p>
+            <div class="social-icons">
+                <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-square"></i></a>
+                <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <span>Copyright © 2024 Apex Automotive.</span>
+            <a href="https://github.com/MarioM17/Web-Aplikacije--Web-stranica-Mario-Moric.git" target="_blank" class="github-link"><i class="fab fa-github"></i></a>
+        </div>
+    </footer>
+
+</body>
+</html>

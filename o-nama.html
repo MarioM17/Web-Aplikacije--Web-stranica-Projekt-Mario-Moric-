@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apex Automotive | O Nama</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- 1. POSTAVKE BOJA I FONTOVA --- */
+        :root {
+            --bg-dark: #121212;
+            --bg-panel: #1e1e1e;
+            --text-main: #e0e0e0;
+            --text-muted: #a0a0a0;
+            --accent-gold: #d4af37;
+            --nav-bg: #000000;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.8; /* Malo veći prored za lakše čitanje teksta */
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+
+        /* --- 2. HERO SEKCIJA --- */
+        .hero-image-container {
+            width: 100%;
+            overflow: hidden;
+            background-color: #000;
+        }
+
+        .hero-image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+            max-height: 73vh;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        /* --- 3. NAVIGACIJA --- */
+        .navbar {
+            background-color: var(--nav-bg);
+            border-bottom: 1px solid #333;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 15px 0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo {
+            font-family: 'Cinzel', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            margin-bottom: 10px;
+            text-shadow: 0px 0px 10px rgba(212, 175, 55, 0.3);
+        }
+
+        .nav-links { display: flex; list-style: none; gap: 20px; }
+        .nav-links a {
+            display: block; padding: 8px 15px; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 2px;
+            color: var(--text-muted); font-weight: 500; border-radius: 2px;
+        }
+        .nav-links a:hover { color: #fff; }
+        .nav-links a.active { color: var(--accent-gold); border-bottom: 1px solid var(--accent-gold); }
+
+        /* --- 4. GLAVNI SADRŽAJ (ČLANAK) --- */
+        .content-wrapper {
+            max-width: 900px; /* Uži kontejner za tekst izgleda čitljivije */
+            margin: 0 auto;
+            padding: 80px 20px;
+            flex: 1;
+        }
+
+        .about-article {
+            background-color: transparent;
+            text-align: left;
+        }
+
+        .article-header {
+            margin-bottom: 40px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 20px;
+        }
+
+        .publish-date {
+            display: block;
+            font-size: 0.9rem;
+            color: var(--accent-gold);
+            margin-bottom: 10px;
+            font-style: italic;
+        }
+
+        .article-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2.8rem;
+            color: #fff;
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+
+        .article-subtitle {
+            font-size: 1.3rem;
+            color: var(--text-muted);
+            font-weight: 300;
+            margin-bottom: 20px;
+        }
+
+        .article-content p {
+            font-size: 1.1rem;
+            color: #ccc;
+            margin-bottom: 25px;
+            text-align: justify; /* Poravnanje teksta */
+        }
+
+        .article-content p:first-of-type::first-letter {
+            font-family: 'Cinzel', serif;
+            font-size: 3.5rem;
+            color: var(--accent-gold);
+            float: left;
+            margin-right: 10px;
+            line-height: 0.8;
+        }
+
+        /* Gumb na dnu članka */
+        .cta-container {
+            margin-top: 50px;
+            text-align: center;
+            border-top: 1px solid #333;
+            padding-top: 40px;
+        }
+
+        .btn-contact {
+            display: inline-block;
+            padding: 15px 40px;
+            background-color: transparent;
+            border: 2px solid var(--accent-gold);
+            color: var(--accent-gold);
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .btn-contact:hover {
+            background-color: var(--accent-gold);
+            color: #000;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+        }
+
+        /* --- 5. FOOTER --- */
+        footer { margin-top: 50px; width: 100%; }
+        .footer-socials { background-color: var(--bg-panel); padding: 20px; text-align: left; padding-left: 10%; }
+        .footer-socials p { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 10px; font-weight: bold; }
+        .social-icons a { font-size: 1.5rem; margin-right: 15px; color: #fff; transition: color 0.3s; }
+        .social-icons a:hover { color: var(--accent-gold); }
+        .footer-copyright { background-color: #000; padding: 15px 0; text-align: center; border-top: 1px solid #333; display: flex; justify-content: center; align-items: center; gap: 10px; }
+        .footer-copyright span { color: #fff; font-size: 0.9rem; }
+        .github-link { color: #fff; font-size: 1.2rem; display: flex; align-items: center; }
+        .github-link:hover { color: var(--accent-gold); }
+
+        /* --- 6. RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .navbar { padding: 15px; }
+            .logo { font-size: 2rem; }
+            .nav-links { flex-direction: column; width: 100%; text-align: center; gap: 5px; }
+            .hero-image-container img { max-height: none; }
+            .article-title { font-size: 2rem; }
+            .footer-socials { text-align: center; padding-left: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="hero-image-container">
+        <img src="Slike/Gemini_Generated_Image_8i9oa18i9oa18i9o.png" alt="Apex Automotive Salon">
+    </header>
+
+    <nav class="navbar">
+        <div class="logo">Apex Auto</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Početna</a></li>
+            <li><a href="novosti.html">Novosti</a></li>
+            <li><a href="o-nama.html" class="active">O Nama</a></li>
+            <li><a href="galerija.html">Galerija</a></li>
+            <li><a href="kontakt.html">Kontakt</a></li>
+        </ul>
+    </nav>
+
+    <main class="content-wrapper">
+        
+        <article class="about-article">
+            <header class="article-header">
+                <time class="publish-date" datetime="2024-01-05">Objavljeno: 05. Siječanj 2024.</time>
+                <h1 class="article-title">Nasljeđe Izvrsnosti: Priča Iza Apex Automotive</h1>
+                <h3 class="article-subtitle">Više od salona automobila – mi smo kustosi snova na četiri kotača.</h3>
+            </header>
+
+            <div class="article-content">
+                <p>
+                    Apex Automotive nije nastao preko noći. Naša priča započela je prije više od desetljeća s jednostavnom, ali ambicioznom vizijom: stvoriti utočište za istinske ljubitelje automobilizma u regiji. U svijetu gdje je kupnja automobila postala transakcijska i bezlična, mi smo odlučili krenuti suprotnim smjerom. Željeli smo vratiti emociju, strast i osjećaj postignuća koji dolazi s posjedovanjem vrhunskog inženjerskog djela. Od skromnih početaka u maloj garaži do današnjeg modernog salona u centru Zagreba, naša misija ostala je nepromijenjena – pružiti iskustvo koje nadilazi očekivanja.
+                </p>
+
+                <p>
+                    Naš pristup selekciji vozila je beskompromisan. Ne prodajemo samo automobile; mi nudimo pažljivo odabranu kolekciju. Svako vozilo koje uđe u naš salon prolazi rigoroznu inspekciju od 150 točaka. Bilo da se radi o najnovijem modelu Ferrarija, bezvremenskom klasiku Porschea ili luksuznoj udobnosti Rolls-Roycea, jamčimo da je svaki automobil u besprijekornom stanju. Naš tim stručnjaka provjerava ne samo mehaničku ispravnost, već i povijest vozila, osiguravajući da naši klijenti dobivaju samo najbolje od najboljeg.
+                </p>
+
+                <p>
+                    Ono što nas zaista izdvaja od konkurencije nije samo naš inventar, već naš odnos prema klijentima. Vjerujemo u izgradnju dugoročnih odnosa temeljenih na povjerenju i transparentnosti. Kupnja luksuznog automobila je putovanje, a mi smo tu da vas vodimo kroz svaki korak tog puta. Od prvog savjetovanja uz kavu u našem VIP salonu, preko probnih vožnji, pa sve do isporuke vozila na vašu adresu i podrške nakon prodaje – Apex Automotive je vaš partner.
+                </p>
+
+                <p>
+                    Naša globalna mreža partnera omogućuje nam da nabavimo vozila koja se čine nedostižnima. Tražite li limitiranu seriju Lamborghinija ili specifičnu konfiguraciju Bentleya koja se više ne proizvodi? Naš tim za nabavu spreman je pretražiti svijet kako bi ispunio vaše želje. Ponosimo se time što možemo pretvoriti nemoguće u moguće, donoseći najekskluzivnije modele izravno pred vaša vrata.
+                </p>
+
+                <p>
+                    Gledajući u budućnost, Apex Automotive ostaje posvećen inovacijama. Pratimo trendove u industriji, od elektrifikacije hiperautomobila do novih tehnologija povezivosti, kako bismo osigurali da naša ponuda uvijek bude na vrhuncu vremena. No, bez obzira na to kako se tehnologija mijenja, naša temeljna vrijednost ostaje ista: strast prema vožnji i posvećenost izvrsnosti. Pozivamo vas da postanete dio naše priče.
+                </p>
+            </div>
+
+            <div class="cta-container">
+                <a href="kontakt.html" class="btn-contact">Dogovorite Sastanak</a>
+            </div>
+        </article>
+
+    </main>
+
+    <footer>
+        <div class="footer-socials">
+            <p>Social media:</p>
+            <div class="social-icons">
+                <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-square"></i></a>
+                <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <span>Copyright © 2024 Apex Automotive.</span>
+            <a href="https://github.com/MarioM17/Web-Aplikacije--Web-stranica-Mario-Moric.git" target="_blank" class="github-link"><i class="fab fa-github"></i></a>
+        </div>
+    </footer>
+
+</body>
+</html>

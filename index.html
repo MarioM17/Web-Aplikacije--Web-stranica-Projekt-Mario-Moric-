@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apex Automotive | Luksuzna Vozila</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* --- 1. POSTAVKE BOJA I FONTOVA --- */
+        :root {
+            --bg-dark: #121212;
+            --bg-panel: #1e1e1e;
+            --text-main: #e0e0e0;
+            --text-muted: #a0a0a0;
+            --accent-gold: #d4af37;
+            --nav-bg: #000000;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+
+        /* --- 2. HERO SEKCIJA --- */
+        .hero-image-container {
+            width: 100%;
+            overflow: hidden;
+            background-color: #000;
+        }
+
+        .hero-image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+            max-height: 73vh;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        /* --- 3. NAVIGACIJA (CENTRIRANA) --- */
+        .navbar {
+            background-color: var(--nav-bg);
+            border-bottom: 1px solid #333;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 15px 0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo {
+            font-family: 'Cinzel', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            margin-bottom: 10px;
+            text-shadow: 0px 0px 10px rgba(212, 175, 55, 0.3);
+        }
+
+        .nav-links { display: flex; list-style: none; gap: 20px; }
+        .nav-links a {
+            display: block; padding: 8px 15px; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 2px;
+            color: var(--text-muted); font-weight: 500; border-radius: 2px;
+        }
+        .nav-links a:hover { color: #fff; }
+        .nav-links a.active { color: var(--accent-gold); border-bottom: 1px solid var(--accent-gold); }
+
+        /* --- 4. GLAVNI SADRŽAJ --- */
+        .content-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+            flex: 1; /* Gura footer na dno */
+        }
+
+        /* --- SEKCIJA ZA DOBRODOŠLICU --- */
+        .welcome-article {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+            margin-bottom: 80px;
+            text-align: left;
+        }
+
+        .welcome-text header h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .welcome-text header h1 span { color: var(--accent-gold); }
+
+        .welcome-text header h3 {
+            font-size: 1.2rem;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 25px;
+            border-left: 3px solid var(--accent-gold);
+            padding-left: 15px;
+        }
+
+        .welcome-text p {
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+            color: var(--text-muted);
+        }
+
+        .featured-image-container { position: relative; margin: 0; }
+        .featured-image-container img {
+            width: 100%;
+            height: auto;
+            border-radius: 4px;
+            border: 1px solid #333;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            transition: transform 0.3s ease;
+        }
+        .featured-image-container img:hover { transform: scale(1.02); border-color: var(--accent-gold); }
+
+        figcaption {
+            margin-top: 10px; font-size: 0.9rem; color: var(--text-muted); text-align: center;
+            font-style: italic; border-top: 1px solid #333; padding-top: 10px;
+        }
+
+        /* --- 5. GRID S VOZILIMA --- */
+        .featured-cars h2 {
+            font-family: 'Cinzel', serif;
+            margin-bottom: 40px;
+            border-left: 4px solid var(--accent-gold);
+            padding-left: 15px;
+            text-align: left;
+            color: #fff;
+            font-size: 2rem;
+        }
+
+        .car-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .car-card {
+            background-color: var(--bg-panel);
+            border: 1px solid #333;
+            border-radius: 4px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .car-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+            border-color: var(--accent-gold);
+        }
+
+        .car-card img {
+            width: 100%;
+            height: 220px; 
+            object-fit: cover;
+            display: block;
+        }
+        
+        .car-info { padding: 20px; text-align: left; }
+        .car-info h3 { font-size: 1.4rem; margin-bottom: 10px; color: #fff; }
+        .car-price { color: var(--accent-gold); font-size: 1.2rem; font-weight: bold; display: block; margin-bottom: 15px; }
+
+        .btn-details {
+            display: inline-block; padding: 10px 20px; border: 1px solid var(--text-muted); color: var(--text-main);
+            font-size: 0.9rem; text-transform: uppercase; cursor: pointer;
+        }
+        .btn-details:hover { background-color: var(--accent-gold); border-color: var(--accent-gold); color: #000; }
+
+        /* --- 6. FOOTER STILOVI (NOVO) --- */
+        footer {
+            margin-top: 50px;
+            width: 100%;
+        }
+
+        /* Gornji dio footera - Social Media */
+        .footer-socials {
+            background-color: var(--bg-panel); /* Malo svjetlija crna */
+            padding: 20px;
+            text-align: left;
+            padding-left: 10%; /* Poravnanje s lijeva */
+        }
+
+        .footer-socials p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .social-icons a {
+            font-size: 1.5rem;
+            margin-right: 15px;
+            color: #fff;
+            transition: color 0.3s;
+        }
+        
+        /* Boje za ikone */
+        .social-icons a:hover { color: var(--accent-gold); }
+        .fa-facebook:hover { color: #3b5998; }
+        .fa-instagram:hover { color: #E1306C; }
+
+        /* Donji dio footera - Copyright & Github */
+        .footer-copyright {
+            background-color: #000; /* Potpuno crna traka */
+            padding: 15px 0;
+            text-align: center;
+            border-top: 1px solid #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px; /* Razmak između teksta i ikone */
+        }
+
+        .footer-copyright span {
+            color: #fff;
+            font-size: 0.9rem;
+        }
+
+        .github-link {
+            color: #fff;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .github-link:hover {
+            color: var(--accent-gold);
+        }
+
+        /* --- 7. RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .navbar { padding: 15px; }
+            .logo { font-size: 2rem; }
+            .nav-links { flex-direction: column; width: 100%; text-align: center; gap: 5px; }
+            .hero-image-container img { max-height: none; }
+            .welcome-article { grid-template-columns: 1fr; gap: 30px; text-align: center; }
+            .welcome-text header h3 { border-left: none; border-bottom: 3px solid var(--accent-gold); padding-bottom: 10px; padding-left: 0; display: inline-block;}
+            .footer-socials { text-align: center; padding-left: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="hero-image-container">
+        <img src="Slike/Gemini_Generated_Image_8i9oa18i9oa18i9o.png" alt="Apex Automotive Salon">
+    </header>
+
+    <nav class="navbar">
+        <div class="logo">Apex Auto</div>
+        <ul class="nav-links">
+            <li><a href="index.html" class="active">Početna</a></li>
+            <li><a href="novosti.html">Novosti</a></li>
+            <li><a href="o-nama.html">O Nama</a></li>
+            <li><a href="galerija.html">Galerija</a></li>
+            <li><a href="kontakt.html">Kontakt</a></li>
+        </ul>
+    </nav>
+
+    <main class="content-wrapper">
+        
+        <article class="welcome-article">
+            <div class="welcome-text">
+                <header>
+                    <h1>Dobrodošli u <span>Apex Automotive</span></h1>
+                    <h3>Novo u ponudi: Ferrari F12 Berlinetta</h3>
+                </header>
+                
+                <p>
+                    Apex Automotive nije samo prodajni salon; mi smo vaša ulaznica u svijet beskompromisnog luksuza i inženjerskog savršenstva. 
+                    Ponosi smo na našu pažljivo odabranu kolekciju vozila koja zadovoljavaju najviše standarde performansi i estetike.
+                </p>
+                <p>
+                    S velikim uzbuđenjem predstavljamo najnoviji dragulj u našem showroomu – Ferrari F12 Berlinetta. 
+                    Ovaj talijanski remek-djelo pokreće atmosferski V12 motor koji proizvodi nevjerojatnu simfoniju zvuka i snage. 
+                </p>
+                <br>
+                <a href="kontakt.html" class="btn-details">Dogovorite probnu vožnju</a>
+            </div>
+
+            <figure class="featured-image-container">
+                <img src="Slike/ferrari-home.jpeg" alt="Crveni Ferrari F12 u salonu">
+                <figcaption>Ferrari F12 Berlinetta izložen u našem VIP dijelu salona.</figcaption>
+            </figure>
+        </article>
+
+        <section class="featured-cars">
+            <h2>Izdvojeno iz ponude</h2>
+            <div class="car-grid">
+                
+                <div class="car-card">
+                    <img src="Slike/porsche_911-gt3-rs.jpeg" alt="Porsche 911 GT3 RS">
+                    <div class="car-info">
+                        <h3>Porsche 911 GT3 RS</h3>
+                        <span class="car-price">285.000 €</span>
+                        <a href="kontakt.html" class="btn-details">Pošalji upit</a>
+                    </div>
+                </div>
+
+                <div class="car-card">
+                    <img src="Slike/rolls-royce.jpeg" alt="Rolls-Royce Phantom">
+                    <div class="car-info">
+                        <h3>Rolls-Royce Phantom</h3>
+                        <span class="car-price">450.000 €</span>
+                        <a href="kontakt.html" class="btn-details">Pošalji upit</a>
+                    </div>
+                </div>
+
+                <div class="car-card">
+                    <img src="Slike/ferrari-roma.jpeg" alt="Ferrari Roma">
+                    <div class="car-info">
+                        <h3>Ferrari Roma</h3>
+                        <span class="car-price">230.000 €</span>
+                        <a href="kontakt.html" class="btn-details">Pošalji upit</a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="footer-socials">
+            <p>Social media:</p>
+            <div class="social-icons">
+                <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-square"></i></a>
+                <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+
+        <div class="footer-copyright">
+            <span>Copyright © 2024 Apex Automotive.</span>
+            <a href="https://github.com/MarioM17/Web-Aplikacije--Web-stranica-Mario-Moric.git" target="_blank" class="github-link">
+                <i class="fab fa-github"></i>
+            </a>
+        </div>
+    </footer>
+
+</body>
+</html>
